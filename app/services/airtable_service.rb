@@ -9,7 +9,7 @@ class AirtableService
     @table_name = "Table%201"
   end
 
-  def get_data
+  def get_airtable_data
     @airtable_api_key = "keyUXowuZjbhgMG6U"
     airtable_response = Faraday.get(
       base_url,
@@ -20,6 +20,17 @@ class AirtableService
     parsed_result
   end
 
+
+  def save_file_as_json
+    airtable_data_response = get_airtable_data
+
+    File.open("public/copy.json","w") do |f|
+      f.write(airtable_data_response.to_json)
+    end
+  end
+
+  private
+
   def base_url
     "https://api.airtable.com/v0/#{@base_id}/#{@table_name}"
   end
@@ -27,4 +38,5 @@ class AirtableService
   def parse_body(response)
     JSON.parse(response.env['response_body'])
   end
+
 end
