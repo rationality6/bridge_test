@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   scope module: :v1, path: '/api/v1' do
     get "/copy", to: 'airtables#copy'
     get "/copy/:key", to: 'airtables#copy_with_key'
+    get "/copy/refresh", to: 'airtables#refresh'
   end
 end

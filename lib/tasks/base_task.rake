@@ -3,5 +3,7 @@
 namespace :airtable do
   task :get_csv do
     puts ["Apple", "Banana", "Orange", "Kiwi"].sample
+    AirtableServiceInstance = AirtableService.new
+    AirtableServiceInstance.hello()
   end
 end
