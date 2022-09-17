@@ -1,16 +1,18 @@
 class V1::AirtablesController < ApplicationController
   def copy
-    AirtableServiceInstance.hello()
-    render json: {}
+    render json: AirtableServiceInstance.json_data
   end
 
   def copy_with_key
+    raise "Empty key error" unless params['key'].present?
 
-    render json: { value: "foo" }
+    result_value = AirtableServiceInstance.parse_value_by_key(params)
+    render json: { value: result_value }
   end
 
   def refresh
-    render json: {}
+    AirtableServiceInstance.get_airtable_data
+    render json: AirtableServiceInstance.json_data
   end
 end
 
