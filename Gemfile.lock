@@ -79,6 +79,10 @@ GEM
     diff-lcs (1.5.0)
     digest (3.1.0)
     erubi (1.11.0)
+    faraday (2.5.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.0)
     ffi (1.15.5)
     formatador (1.1.0)
     globalid (1.0.0)
@@ -209,6 +213,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.1)
+    ruby2_keywords (0.0.5)
     shellany (0.0.1)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -244,6 +249,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  faraday
   guard-rspec
   importmap-rails
   jbuilder
