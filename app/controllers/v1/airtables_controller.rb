@@ -1,5 +1,9 @@
 class V1::AirtablesController < ApplicationController
   def copy
+    if params['since'].present?
+      return render json: {"since": params['since']}
+    end
+
     render json: AirtableServiceInstance.json_data
   end
 
@@ -26,6 +30,11 @@ class V1::AirtablesController < ApplicationController
     AirtableServiceInstance.get_airtable_data
     render json: AirtableServiceInstance.json_data
   end
+
+  def bye
+    render json: { value: 'Goodbye' }
+  end
+
 end
 
 

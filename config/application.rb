@@ -36,7 +36,7 @@ module BridgeTest
 
     config.after_initialize do
       Application.load_tasks
-      Rake::Task[ 'airtable:get_airtable_and_save_file' ].invoke
+      Rake::Task[ 'airtable:get_airtable_load_file' ].invoke
     end
     
   end

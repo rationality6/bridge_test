@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "/copy/refresh", to: 'airtables#refresh'
     get "/copy/intro.created_at", to: 'airtables#copy_with_key_created_at'
     get "/copy/intro.updated_at", to: 'airtables#copy_with_key_updated_at'
+    get "/copy/bye", to: 'airtables#bye'
     get "/copy/:key", to: 'airtables#copy_with_key'
-
   end
 end
