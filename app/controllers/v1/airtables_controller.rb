@@ -1,7 +1,11 @@
 class V1::AirtablesController < ApplicationController
   def copy
     if params['since'].present?
-      return render json: { "since": params['since'] }
+
+      time = AirtableServiceInstance.converte_epoch_time(params['since'])
+
+      since_result = AirtableServiceInstance.json_data['records'].filter { |item| item['createdTime'] > time }
+      return render json: since_result
     end
 
     render json: AirtableServiceInstance.json_data
@@ -34,6 +38,8 @@ class V1::AirtablesController < ApplicationController
   def bye
     render json: { value: 'Goodbye' }
   end
+
+  private
 
 end
 

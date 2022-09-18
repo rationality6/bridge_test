@@ -24,9 +24,9 @@ class AirtableService
     # set hashmap
     set_hash(@json_data)
 
-    @json_data
+    save_file_as_json(@json_data)
 
-    save_file_as_json
+    @json_data
   end
 
   def parse_datetime(string)
@@ -40,11 +40,10 @@ class AirtableService
     parsed_value
   end
 
-  def save_file_as_json
-    airtable_data_response = get_airtable_data
+  def save_file_as_json(data)
 
     File.open("public/copy.json", "w") do |f|
-      f.write(airtable_data_response.to_json)
+      f.write(data.to_json)
     end
   end
 
@@ -54,6 +53,12 @@ class AirtableService
 
     @json_data = data_hash
     set_hash(@json_data)
+  end
+
+  def converte_epoch_time(epoch_time)
+    date_time = Time.at(epoch_time.to_i).to_datetime()
+    result = date_time.strftime("%a %b %d %I:%M:%S %p")
+    result
   end
 
   private
@@ -103,12 +108,6 @@ class AirtableService
 
   def parse_body(response)
     JSON.parse(response.env['response_body'])
-  end
-
-  def converte_epoch_time(epoch_time)
-    date_time = Time.at(epoch_time).to_datetime()
-    result = date_time.strftime("%a %b %d %I:%M:%S %p")
-    result
   end
 
 end
