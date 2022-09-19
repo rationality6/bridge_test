@@ -78,14 +78,17 @@ class AirtableService
 
       regex_datetime = /datetime/
       if word.match(regex_datetime)
+
         # when time come
         regex_before_datetime_word = /.+?(?=,)/
         mached_word = word.match(regex_before_datetime_word).to_s
         converte_epoch_time(params[mached_word].to_i)
       elsif airtable_hashmap[word].present?
+
         # when nested
         parse_curly_recursive(airtable_hashmap[word], params, accumulator + "#{params[word]}")
       else
+
         # when normal parse
         "#{params[word]}"
       end
