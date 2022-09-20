@@ -45,6 +45,9 @@ class AirtableService
     File.open("public/copy.json", "w") do |f|
       f.write(data.to_json)
     end
+
+    @json_data = data_hash
+    set_hash(@json_data)
   end
 
   def load_file_as_json
