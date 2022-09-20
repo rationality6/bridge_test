@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "contact_options_spec" do
+
   let(:contact_options_instance) { ContactOptions.new }
 
   describe '#perform' do
-    @contects = eval(IO.read('./public/contects_data.rb'))
-    result = contact_options_instance.perform
-    expect(result)
+    it 'run with basic data' do
+      result = contact_options_instance.perform
+
+      expected_result0 = eval(IO.read('./spec/services/expected_result0.rb'))
+      expect(result).to eq expected_result0
+    end
   end
 
   describe '#contact_ranking_calculation' do

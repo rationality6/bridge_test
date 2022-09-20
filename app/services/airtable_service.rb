@@ -61,13 +61,13 @@ class AirtableService
     result
   end
 
-  private
-
   def set_hash(data)
     data['records'].each do |record|
       @airtable_hashmap[record['fields']['Key']] = record['fields']['Copy']
     end
   end
+
+  private
 
   def parse_curly_recursive(string, params, accumulator)
     # regex select between { and }
