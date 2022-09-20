@@ -35,7 +35,7 @@ class AirtableService
 
   def parse_value_by_key(params)
     field_value = airtable_hashmap[params['key']]
-    parsed_value = parse_curly_recursive(field_value, params, "")
+    parsed_value = parse_curly_tail_recursive(field_value, params, "")
 
     parsed_value
   end
@@ -69,7 +69,7 @@ class AirtableService
 
   private
 
-  def parse_curly_recursive(string, params, accumulator)
+  def parse_curly_tail_recursive(string, params, accumulator)
     # regex select between { and }
     regex_selecter = /\{(.*?)\}/
 
@@ -86,7 +86,7 @@ class AirtableService
       elsif airtable_hashmap[word].present?
 
         # when nested
-        parse_curly_recursive(airtable_hashmap[word], params, accumulator + "#{params[word]}")
+        parse_curly_tail_recursive(airtable_hashmap[word], params, accumulator + "#{params[word]}")
       else
 
         # when normal parse

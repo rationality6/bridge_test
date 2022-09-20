@@ -6,7 +6,7 @@ class V1::AirtablesController < ApplicationController
       time = AirtableServiceInstance.converte_epoch_time(params['since'])
 
       since_result = AirtableServiceInstance.json_data['records'].filter do |item|
-        Chronic.parse(item['createdTime']) > time
+        Chronic.parse(item['fields']['mod']) > time
       end
 
       return render json: since_result
