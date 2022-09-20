@@ -56,7 +56,7 @@ class AirtableService
   end
 
   def converte_epoch_time(epoch_time)
-    date_time = Time.at(epoch_time.to_i).to_datetime()
+    date_time = Time.at(epoch_time.to_i).to_datetime() - 9.hours
     result = date_time.strftime("%a %b %d %I:%M:%S %p")
     result
   end
